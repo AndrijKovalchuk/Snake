@@ -30,7 +30,9 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+bin/
 [Oo]bj/
+obj/
 [Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
@@ -349,6 +351,7 @@ healthchecksdb
 
 ### VisualStudioCode ###
 .vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
