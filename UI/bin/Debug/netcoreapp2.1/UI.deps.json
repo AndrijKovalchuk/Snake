@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v2.1": {
       "UI/1.0.0": {
         "dependencies": {
-          "Algorithm": "1.0.0"
+          "Algorithm": "1.0.0",
+          "Logic": "1.0.0"
         },
         "runtime": {
           "UI.dll": {}
@@ -29,6 +30,14 @@
         "runtime": {
           "Algorithm.dll": {}
         }
+      },
+      "Logic/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "runtime": {
+          "Logic.dll": {}
+        }
       }
     }
   },
@@ -46,6 +55,11 @@
       "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
     },
     "Algorithm/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Logic/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

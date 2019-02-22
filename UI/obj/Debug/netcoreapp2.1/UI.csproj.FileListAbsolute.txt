@@ -26,3 +26,5 @@ D:\Snake\UI\obj\Debug\netcoreapp2.1\UI.AssemblyInfo.cs
 D:\Snake\UI\obj\Debug\netcoreapp2.1\UI.csproj.CopyComplete
 D:\Snake\UI\obj\Debug\netcoreapp2.1\UI.dll
 D:\Snake\UI\obj\Debug\netcoreapp2.1\UI.pdb
+D:\Snake\UI\bin\Debug\netcoreapp2.1\Logic.dll
+D:\Snake\UI\bin\Debug\netcoreapp2.1\Logic.pdb

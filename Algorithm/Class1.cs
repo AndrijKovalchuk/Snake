@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace API
+namespace Algorithm
 {
     public class Class1 // Temporary name
     {

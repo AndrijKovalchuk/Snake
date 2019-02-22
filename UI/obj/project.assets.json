@@ -229,6 +229,19 @@
         "runtime": {
           "bin/placeholder/Algorithm.dll": {}
         }
+      },
+      "Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "bin/placeholder/Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Logic.dll": {}
+        }
       }
     }
   },
@@ -746,11 +759,17 @@
       "type": "project",
       "path": "../Algorithm/Algorithm.csproj",
       "msbuildProject": "../Algorithm/Algorithm.csproj"
+    },
+    "Logic/1.0.0": {
+      "type": "project",
+      "path": "../Logic/Logic.csproj",
+      "msbuildProject": "../Logic/Logic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Algorithm >= 1.0.0",
+      "Logic >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
@@ -786,6 +805,9 @@
           "projectReferences": {
             "D:\\Snake\\Algorithm\\Algorithm.csproj": {
               "projectPath": "D:\\Snake\\Algorithm\\Algorithm.csproj"
+            },
+            "D:\\Snake\\Logic\\Logic.csproj": {
+              "projectPath": "D:\\Snake\\Logic\\Logic.csproj"
             }
           }
         }
