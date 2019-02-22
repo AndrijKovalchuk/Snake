@@ -1,0 +1,9 @@
+D:\Snake\Snake\API\bin\Debug\netstandard2.0\API.deps.json
+D:\Snake\Snake\API\bin\Debug\netstandard2.0\API.dll
+D:\Snake\Snake\API\bin\Debug\netstandard2.0\API.pdb
+D:\Snake\Snake\API\obj\Debug\netstandard2.0\API.csprojAssemblyReference.cache
+D:\Snake\Snake\API\obj\Debug\netstandard2.0\API.csproj.CoreCompileInputs.cache
+D:\Snake\Snake\API\obj\Debug\netstandard2.0\API.AssemblyInfoInputs.cache
+D:\Snake\Snake\API\obj\Debug\netstandard2.0\API.AssemblyInfo.cs
+D:\Snake\Snake\API\obj\Debug\netstandard2.0\API.dll
+D:\Snake\Snake\API\obj\Debug\netstandard2.0\API.pdb
