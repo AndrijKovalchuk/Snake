@@ -10,7 +10,10 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            WriteLine("I'm started");                      
+            WriteLine("I'm started");
+
+            Snake snake = new Snake();
+            snake.MakeMove();
 
             Data data = new Data();
             data.Direction = 'u'; // r - Right, l - Left, u - Up, d - Down.
