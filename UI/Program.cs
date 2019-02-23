@@ -10,13 +10,15 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            WriteLine("I'm started");
+            WriteLine("I'm started");                      
 
             Data data = new Data();
             data.Direction = 'u'; // r - Right, l - Left, u - Up, d - Down.
             data.FieldSize = 99;
             data.PlayerCordinateX = 10;
             data.PlayerCordinateY = 10;
+            data.EnemyCordinateX = 55;
+            data.EnemyCordinateY = 70;
 
             string Output = JsonConvert.SerializeObject(data);
 
@@ -30,6 +32,8 @@ namespace UI
             WriteLine(DeserealizedOutput.Direction);
             WriteLine(DeserealizedOutput.PlayerCordinateX);
             WriteLine(DeserealizedOutput.PlayerCordinateY);
+            WriteLine(DeserealizedOutput.EnemyCordinateX);
+            WriteLine(DeserealizedOutput.EnemyCordinateY);
             WriteLine("\nPress Enter to exit.");
             Read();
         }

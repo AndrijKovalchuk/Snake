@@ -10,5 +10,8 @@ namespace Logic
 
         public int PlayerCordinateY { get; set; }
 
+        public int EnemyCordinateX { get; set; }
+        public int EnemyCordinateY { get; set; }
+
     }
 }
