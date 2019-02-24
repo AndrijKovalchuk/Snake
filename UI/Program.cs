@@ -13,9 +13,17 @@ namespace UI
             WriteLine("I'm started");
 
             Snake snake = new Snake();
-            snake.MakeMove();
+            snake.MakeMove('u', 19, 21);
 
-            Data data = new Data();
+            TestJson();
+            
+            WriteLine("\nPress Enter to exit.");
+            Read();
+        }
+
+        static void TestJson()
+        {
+            Data data = new Data(); // OutputData.cs
             data.Direction = 'u'; // r - Right, l - Left, u - Up, d - Down.
             data.FieldSize = 99;
             data.PlayerCordinateX = 10;
@@ -37,8 +45,6 @@ namespace UI
             WriteLine(DeserealizedOutput.PlayerCordinateY);
             WriteLine(DeserealizedOutput.EnemyCordinateX);
             WriteLine(DeserealizedOutput.EnemyCordinateY);
-            WriteLine("\nPress Enter to exit.");
-            Read();
         }
     }
 }

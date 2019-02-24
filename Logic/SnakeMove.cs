@@ -35,11 +35,13 @@ namespace Logic
             }
             return true;
         }
-        public void MakeMove()
+        public void MakeMove(char NextDirection, int NextCordinateX, int NextCordinateY)
         {
-            if(CheckMove('u', 21, 19))
+            if(CheckMove(NextDirection, NextCordinateX, NextCordinateY))
             {
-                this.Scores++;
+                this.Direction = NextDirection;
+                this.CordinateX = NextCordinateX;
+                this.CordinateY = NextCordinateY;
             }
             
             else
