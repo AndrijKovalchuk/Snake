@@ -4,41 +4,38 @@ namespace Logic
 {
     public partial class Snake
     {
-        private bool CheckMove(char NextDirection, int NextCordinateX, int NextCordinateY)
-        {
-            if(Math.Abs(NextCordinateX - CordinateX) == 1 & Math.Abs(NextCordinateY - CordinateY) == 1)
-            {
+        private bool CheckMove(char NextDirection)
+        {            
                 // Cheking 4 directions
-                if(NextCordinateX == 0 & NextDirection == 'l') 
+                if(this.CordinateX == 0 & NextDirection == 'l') 
                 {
                     return false;
                 }
 
-                if(NextCordinateY == 0 & NextDirection == 'd')
+                if(this.CordinateY == 0 & NextDirection == 'd')
                 {
                     return false;
                 }
 
-                if(NextCordinateX == 99 & NextDirection == 'r')
+                if(this.CordinateX == 99 & NextDirection == 'r')
                 {
                     return false;
                 }
 
-                if(NextCordinateY == 99 & NextDirection == 'u')
+                if(this.CordinateY == 99 & NextDirection == 'u')
                 {
                     return false;
                 }
-            }
-            else
-            {
-                return false;
-            }
+            
             return true;
         }
-        public void MakeMove(char NextDirection, int NextCordinateX, int NextCordinateY)
+        public void MakeMove(char NextDirection)
         {
-            if(CheckMove(NextDirection, NextCordinateX, NextCordinateY))
+            //Console.WriteLine(NextCordinateX);
+            ClaculateNextCordinats(NextDirection);
+            if(CheckMove(NextDirection))
             {
+                //Console.WriteLine(this.NextCordinateX);
                 this.Direction = NextDirection;
                 this.CordinateX = NextCordinateX;
                 this.CordinateY = NextCordinateY;
@@ -47,6 +44,25 @@ namespace Logic
             else
             {
                 Console.WriteLine("Wrong choice");
+            }
+        }
+        public void ClaculateNextCordinats(char NextDirection)
+        {
+            switch(NextDirection)
+            {
+                case 'l':
+                    this.NextCordinateX = this.CordinateX - 1;
+                    break;
+                case 'r':
+                    this.NextCordinateX = this.CordinateX + 1;
+                    break;
+                case 'd':
+                    this.NextCordinateY = this.CordinateY - 1;
+                    break;
+                case 'u':
+                    this.NextCordinateY = this.CordinateY + 1;
+                    break;
+                
             }
         }
     }

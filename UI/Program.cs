@@ -12,39 +12,45 @@ namespace UI
         {
             WriteLine("I'm started");
 
-            Snake snake = new Snake();
-            snake.MakeMove('u', 19, 21);
+            Field field = new Field();
 
-            TestJson();
+            Test();
+
+            //Enter direction char, In this place must be algorithm function
+            // and she must return char; r - Right, l - Left, u - Up, d - Down.
+            field.DoMove('d'); 
+
+            WriteLine("\n");
+            PrintResult(field.GameField);            
             
             WriteLine("\nPress Enter to exit.");
             Read();
         }
 
-        static void TestJson()
+        static void Test()
         {
-            Data data = new Data(); // OutputData.cs
-            data.Direction = 'u'; // r - Right, l - Left, u - Up, d - Down.
-            data.FieldSize = 99;
-            data.PlayerCordinateX = 10;
-            data.PlayerCordinateY = 10;
-            data.EnemyCordinateX = 55;
-            data.EnemyCordinateY = 70;
+            Field field = new Field();
+            field.InitField();
 
-            string Output = JsonConvert.SerializeObject(data);
+            string Output = JsonConvert.SerializeObject(field);
 
-            Data DeserealizedOutput = JsonConvert.DeserializeObject<Data>(Output);
+            Field DeserealizedOutput = JsonConvert.DeserializeObject<Field>(Output);
 
-            WriteLine("\nSerialized Output Data:");
-            WriteLine(Output);
+            PrintResult(DeserealizedOutput.GameField);
+            
+        }
 
-            WriteLine("\nDeserialized Output Data:");
-            WriteLine(DeserealizedOutput.FieldSize);
-            WriteLine(DeserealizedOutput.Direction);
-            WriteLine(DeserealizedOutput.PlayerCordinateX);
-            WriteLine(DeserealizedOutput.PlayerCordinateY);
-            WriteLine(DeserealizedOutput.EnemyCordinateX);
-            WriteLine(DeserealizedOutput.EnemyCordinateY);
+        //Print result array
+        static void PrintResult(char[,] temp)
+        {
+            for(int i = 19; i >= 0; i--)
+            {
+                for(int j = 0; j < 20; j++)
+                {
+                    Write(Convert.ToChar(temp[i, j]) + " ");
+                }
+                Write("\n");
+            }
         }
     }
 }

@@ -1,11 +1,11 @@
 namespace Logic
 {
-    public partial class Field
+    public partial class Field 
     {
-        public int FieldSize { get; set;} = 99;
-        public int StartCordinateX { get; set; } = 10;
-        public int StartCordinateY { get; set; } = 10;
-        public int EnemyCordinateX { get; set; } = 50;
-        public int EnemyCordinateY { get; set; } = 70;
+        public int FieldSize { get; set;} = 20;
+        public char[,] GameField = new char[20, 20];
+        private int StartCordinateX { get; set; } = 1;
+        private int StartCordinateY { get; set; } = 1;
+        
     }
 }
