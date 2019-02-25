@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\Algorithm\Algorithm.csproj" />
+  <ItemGroup>    
     <ProjectReference Include="..\Logic\Logic.csproj" />
   </ItemGroup>
 

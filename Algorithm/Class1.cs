@@ -3,16 +3,17 @@
 
 namespace Algorithm
 {
-    public class Class1 // Temporary name
+    public class MyAlgorithm // Temporary name
     {
         public void SetState() // Fuction for sending information to client
         {
 
         }
 
-        public void MakeMove() // Function for getting information from client
+        public string MakeMove(string input) // Function for getting information from client
         {
-
+            string a = "u";
+            return a;
         }
     }
 }
