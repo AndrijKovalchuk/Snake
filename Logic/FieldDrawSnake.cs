@@ -4,7 +4,7 @@ namespace Logic
     {
         public void DrawSnake(int x, int y, char Symbol)
         {
-            this.Array[x, y] = Symbol;
+            this.Array[y, x] = Symbol;
         }
     }
 }

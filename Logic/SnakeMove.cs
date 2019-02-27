@@ -4,20 +4,40 @@ namespace Logic
 {
     public partial class Snake
     {
-        public void DoStep(int Direction)
+        public void DoStep(string Direction, int size)
         {
             switch (Direction)
             {
-                case 'l':
+                case "l":
+                    if(this.CoordinateX == 0)
+                    {
+                        IsDead();
+                        break;
+                    }
                     this.CoordinateX--;
                     break;
-                case 'r':
+                case "r":
+                    if(this.CoordinateX == size - 1)
+                    {
+                        IsDead();
+                        break;
+                    }
                     this.CoordinateX++;
                     break;
-                case 'd':
+                case "d":
+                    if(this.CoordinateY == 0)
+                    {
+                        IsDead();
+                        break;
+                    }
                     this.CoordinateY--;
                     break;
-                case 'u':
+                case "u":
+                    if(this.CoordinateY == size - 1)
+                    {
+                        IsDead();
+                        break;
+                    }
                     this.CoordinateY++;
                     break;
             }
