@@ -1,5 +1,3 @@
-using System;
-
 namespace Logic
 {
     public partial class Food 

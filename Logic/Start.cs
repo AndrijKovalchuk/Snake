@@ -3,6 +3,13 @@ using Newtonsoft.Json;
 
 namespace Logic
 {
+    public enum Direction
+    {
+        Up = 1,
+        Down,
+        Right,
+        Left
+    }
     public class Game
     {        
         public void Start()
@@ -25,7 +32,7 @@ namespace Logic
                 field.DrawFood(food.CordinateX, food.CordinateY, food.Symbol);
                 field.DrawSnake(snake.CoordinateX, snake.CoordinateY, snake.HeadSymbol);
                 field.Print();
-                snake.DoStep("u", field.Size);
+                snake.DoStep(Direction.Up, field.Size);
                 if(snake.Eat(food.CordinateX, food.CordinateY))
                 {
                     food.Generate(field.Size);
