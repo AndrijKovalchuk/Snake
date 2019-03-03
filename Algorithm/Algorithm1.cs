@@ -20,30 +20,30 @@ namespace Algorithm
                 {
                     GameField[i, j] = Field[i, j].ToString();
 
-                    if (GameField[i, j] == "1") SnakeHead = new Point(i, j);
-                    if (GameField[i, j] == "X") LocationFood = new Point(i, j);
+                    if (GameField[i, j] == "1") SnakeHead = new Point(j, i);
+                    if (GameField[i, j] == "X") LocationFood = new Point(j, i);
                 }
             }
         }
 
-        public char GetMove()
+        public Move GetMove()
         {
             // if snake is missing
             if (SnakeHead.Equals(new Point()))
             {
-                return 's';
+                return Move.None;
             }
 
             // if food is missing
             if (LocationFood.Equals(new Point()))
             {
-                if (MoveFromTheEdges() != 's')
+                if (MoveFromTheEdges() != Move.None)
                 {
                     return MoveFromTheEdges();
                 }
                 else
                 {
-                    if (MoveAlongTheEdge() != 's')
+                    if (MoveAlongTheEdge() != Move.None)
                     {
                         return MoveAlongTheEdge();
                     }
@@ -57,57 +57,57 @@ namespace Algorithm
             return MoveToThePoint();
         }
 
-        private char MoveFromTheEdges()
+        private Move MoveFromTheEdges()
         {
             if ((SnakeHead.X == 0) && (SnakeHead.Y == 0))
             {
-                return 'r';
+                return Move.Right;
             }
 
             if ((SnakeHead.X == GameField.GetLength(0) - 1) && (SnakeHead.Y == 0))
             {
-                return 'd';
+                return Move.Down;
             }
 
             if ((SnakeHead.X == GameField.GetLength(0) - 1) && (SnakeHead.Y == GameField.GetLength(1) - 1))
             {
-                return 'l';
+                return Move.Left;
             }
 
             if ((SnakeHead.X == 0) && (SnakeHead.Y == GameField.GetLength(1) - 1))
             {
-                return 'u';
+                return Move.Up;
             }
 
-            return 's';
+            return Move.None;
         }
 
-        private char MoveAlongTheEdge()
+        private Move MoveAlongTheEdge()
         {
             if (SnakeHead.X == 0)
             {
-                return 'u';
+                return Move.Up;
             }
 
             if (SnakeHead.X == GameField.GetLength(0) - 1)
             {
-                return 'd';
+                return Move.Down;
             }
 
             if (SnakeHead.Y == 0)
             {
-                return 'r';
+                return Move.Right;
             }
 
             if (SnakeHead.Y == GameField.GetLength(1) - 1)
             {
-                return 'l';
+                return Move.Left;
             }
 
-            return 's';
+            return Move.None;
         }
 
-        private char MoveToTheEdge()
+        private Move MoveToTheEdge()
         {
             var DistanceTheRightEdge = GameField.GetLength(0) - 1 - SnakeHead.X;
             var DistanceTheDownEdge = GameField.GetLength(1) - 1 - SnakeHead.Y;
@@ -118,22 +118,22 @@ namespace Algorithm
                 {
                     if (DistanceTheRightEdge > DistanceTheDownEdge)
                     {
-                        return 'd';
+                        return Move.Down;
                     }
                     else
                     {
-                        return 'r';
+                        return Move.Right;
                     }
                 }
                 else
                 {
                     if (DistanceTheRightEdge > SnakeHead.Y)
                     {
-                        return 'u';
+                        return Move.Up;
                     }
                     else
                     {
-                        return 'r';
+                        return Move.Right;
                     }
                 }                    
             }
@@ -143,38 +143,38 @@ namespace Algorithm
                 {
                     if (SnakeHead.X > DistanceTheDownEdge)
                     {
-                        return 'd';
+                        return Move.Down;
                     }
                     else
                     {
-                        return 'l';
+                        return Move.Left;
                     }
                 }
                 else
                 {
                     if (SnakeHead.X > SnakeHead.Y)
                     {
-                        return 'u';
+                        return Move.Up;
                     }
                     else
                     {
-                        return 'l';
+                        return Move.Left;
                     }
                 }
             }
         }
 
-        private char MoveToThePoint()
+        private Move MoveToThePoint()
         {
             if (SnakeHead.X == LocationFood.X)
             {
                 if (SnakeHead.Y > LocationFood.Y)
                 {
-                    return 'u';
+                    return Move.Up;
                 }
                 else
                 {
-                    return 'd';
+                    return Move.Down;
                 }
             }
 
@@ -182,11 +182,11 @@ namespace Algorithm
             {
                 if (SnakeHead.X > LocationFood.X)
                 {
-                    return 'l';
+                    return Move.Left;
                 }
                 else
                 {
-                    return 'r';
+                    return Move.Right;
                 }
             }
 
@@ -196,22 +196,22 @@ namespace Algorithm
                 {
                     if(SnakeHead.X - LocationFood.X > SnakeHead.Y - LocationFood.Y)
                     {
-                        return 'u';
+                        return Move.Up;
                     }
                     else
                     {
-                        return 'l';
+                        return Move.Left;
                     }
                 }
                 else
                 {
                     if (SnakeHead.X - LocationFood.X > LocationFood.Y - SnakeHead.Y)
                     {
-                        return 'd';
+                        return Move.Down;
                     }
                     else
                     {
-                        return 'l';
+                        return Move.Left;
                     }
                 }
             }
@@ -221,22 +221,22 @@ namespace Algorithm
                 {
                     if (LocationFood.X - SnakeHead.X > SnakeHead.Y - LocationFood.Y)
                     {
-                        return 'u';
+                        return Move.Up;
                     }
                     else
                     {
-                        return 'r';
+                        return Move.Right;
                     }
                 }
                 else
                 {
                     if (LocationFood.X - SnakeHead.X > LocationFood.Y - SnakeHead.Y)
                     {
-                        return 'd';
+                        return Move.Down;
                     }
                     else
                     {
-                        return 'r';
+                        return Move.Right;
                     }
                 }
             }
