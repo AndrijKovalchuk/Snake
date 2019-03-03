@@ -1,5 +1,6 @@
 using Algorithm;
 using Newtonsoft.Json;
+using static System.Console;
 
 namespace Logic
 {
@@ -32,7 +33,9 @@ namespace Logic
                 field.DrawFood(food.CordinateX, food.CordinateY, food.Symbol);
                 field.DrawSnake(snake.CoordinateX, snake.CoordinateY, snake.HeadSymbol);
                 field.Print();
-                snake.DoStep(Direction.Up, field.Size);
+                algo.SetGameField(field.Array);
+                Move direction = algo.GetMove();
+                snake.DoStep((Direction) (int)direction , field.Size);
                 if(snake.Eat(food.CordinateX, food.CordinateY))
                 {
                     food.Generate(field.Size);
