@@ -4,43 +4,48 @@ namespace Logic
 {
     public partial class Snake
     {
-        public void DoStep(Direction direction, int size)
+        public bool TryStep(Direction direction, int size)
         {
+            var askIsDead = true;
+
             switch (direction)
             {
                 case Direction.Left:
-                    if(this.CoordinateX == 0)
+                    if (CoordinateX > 0)
                     {
-                        IsDead();
-                        break;
+                        CoordinateX--;
+                        askIsDead = false;
                     }
-                    this.CoordinateX--;
                     break;
                 case Direction.Right:
-                    if(this.CoordinateX == size - 1)
+                    if (CoordinateX < size - 1)
                     {
-                        IsDead();
-                        break;
+                        CoordinateX++;
+                        askIsDead = false;
                     }
-                    this.CoordinateX++;
                     break;
                 case Direction.Down:
-                    if(this.CoordinateY == 0)
+                    if (CoordinateY < size - 1)
                     {
-                        IsDead();
-                        break;
+                        CoordinateY++;
+                        askIsDead = false;
                     }
-                    this.CoordinateY--;
                     break;
                 case Direction.Up:
-                    if(this.CoordinateY == size - 1)
+                    if (CoordinateY > 0)
                     {
-                        IsDead();
-                        break;
+                        CoordinateY--;
+                        askIsDead = false;
                     }
-                    this.CoordinateY++;
                     break;
             }
+
+            if (askIsDead)
+            {
+                IsDead();
+            }
+
+            return !askIsDead;
         }
     }
 }
