@@ -15,7 +15,7 @@ namespace Logic
     {        
         public void Start()
         {  
-            int Itt = 0;          
+            
             //Data DataOut = new Data();            
             Algorithm1 algo = new Algorithm1();
             Field field = new Field();
@@ -25,22 +25,26 @@ namespace Logic
             //food.Generate(field.Size);
 
             snake.CoordinateX = field.StartCordinateX;
-            snake.CoordinateY = field.StartCordinateY;          
+            snake.CoordinateY = field.StartCordinateY;
+
             
-            while(Itt < 10)
+
+            for (Move direction = Move.Left; snake.TryStep((Direction)(int)direction, field.Size); direction = algo.GetMove())
             {
                 field.DrawClean();
                 field.DrawFood(food.CordinateX, food.CordinateY, food.Symbol);
                 field.DrawSnake(snake.CoordinateX, snake.CoordinateY, snake.HeadSymbol);
+
+                Clear();
                 field.Print();
+
                 algo.SetGameField(field.Array);
-                Move direction = algo.GetMove();
-                snake.DoStep((Direction) (int)direction , field.Size);
+                WriteLine(direction);
                 if(snake.Eat(food.CordinateX, food.CordinateY))
                 {
                     food.Generate(field.Size);
                 }
-                Itt++;             
+                ReadKey();
             }
         }
 
