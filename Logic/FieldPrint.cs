@@ -1,4 +1,5 @@
 using System;
+using static System.Console;
 
 namespace Logic
 {
@@ -6,15 +7,34 @@ namespace Logic
     {
         public void Print()
         {
-            for(int i = this.Size - 1; i >= 0; i--)
+            for(var i = 0; i < Array.GetLength(0); i++)
             {
-                for(int j = 0; j < this.Size; j++)
+                for(var j = 0; j < Array.GetLength(1); j++)
                 {
-                    Console.Write(this.Array[i,j]);
+                    ColorWrite(Array[i,j]);
                 }
-                Console.Write("\n");
+                WriteLine();
             }
-            Console.Write("\n");
+        }
+
+        private void ColorWrite(char token)
+        {
+            switch (token)
+            {
+                case '1':
+                    ForegroundColor = ConsoleColor.Green;
+                    break;
+                case 'X':
+                    ForegroundColor = ConsoleColor.DarkRed;
+                    break;
+                default:
+                    ForegroundColor = ConsoleColor.Yellow;
+                    break;
+            }
+
+            Write(token + " ");
+
+            ResetColor();
         }
     }
 }
