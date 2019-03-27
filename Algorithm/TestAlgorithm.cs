@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Common;
 
 namespace Algorithm
 {
-    public class Algorithm1 : UserAlgorithm
+    public class TestAlgorithm
     {
-        private string[,] GameField;
-        private Point SnakeHead = new Point();
-        private Point LocationFood = new Point();
+        /*private string[,] GameField;
+        private Point SnakeHead = new Point();*/
+        private Point LocationFood;
 
         public void SetGameField(char[,] Field)
         {
-            GameField = new string[Field.GetLength(0), Field.GetLength(1)];
+            /*GameField = new string[Field.GetLength(0), Field.GetLength(1)];
 
             for(var i = 0; i < Field.GetLength(0); i++)
             {
@@ -23,11 +24,11 @@ namespace Algorithm
                     if (GameField[i, j] == "1") SnakeHead = new Point(j, i);
                     if (GameField[i, j] == "X") LocationFood = new Point(j, i);
                 }
-            }
+            }*/
         }
 
         public Move GetMove()
-        {
+        {/*
             // if snake is missing
             if (SnakeHead.Equals(new Point()))
             {
@@ -53,10 +54,11 @@ namespace Algorithm
                     }
                 }
             }
-            
-            return MoveToThePoint();
+            */
+            return Move.None;
         }
 
+        /*
         private Move MoveFromTheEdges()
         {
             if ((SnakeHead.X == 0) && (SnakeHead.Y == 0))
@@ -240,6 +242,6 @@ namespace Algorithm
                     }
                 }
             }
-        }
+        }*/
     }
 }
