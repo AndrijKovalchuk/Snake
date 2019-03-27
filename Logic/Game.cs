@@ -1,6 +1,7 @@
 using Algorithm;
 using Newtonsoft.Json;
 using static System.Console;
+using Common;
 
 namespace Logic
 {
@@ -12,8 +13,11 @@ namespace Logic
         Left
     }
     public class Game
-    {        
-        public void Start()
+    {    
+        private Game() {}
+        //private static Game _instance;
+
+        public static void Start()
         {  
             
             //Data DataOut = new Data();            

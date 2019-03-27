@@ -9,10 +9,8 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            WriteLine("I'm started");
-
-            Game game = new Game();
-            game.Start();  
+            WriteLine("I'm started"); 
+            Game.Start();
             
             Read();
         }
