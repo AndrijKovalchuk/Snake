@@ -1,4 +1,5 @@
 using System;
+using Common;
 
 namespace Logic
 {
@@ -10,34 +11,34 @@ namespace Logic
         public char HeadSymbol { get; set; } = '1';
         public char BodySymbol { get; set; }
 
-         public bool TryStep(Direction direction, int size)
+        public bool TryStep(Move direction, int size)
         {
             var askIsDead = true;
 
             switch (direction)
             {
-                case Direction.Left:
+                case Move.Left:
                     if (CoordinateX > 0)
                     {
                         CoordinateX--;
                         askIsDead = false;
                     }
                     break;
-                case Direction.Right:
+                case Move.Right:
                     if (CoordinateX < size - 1)
                     {
                         CoordinateX++;
                         askIsDead = false;
                     }
                     break;
-                case Direction.Down:
+                case Move.Down:
                     if (CoordinateY < size - 1)
                     {
                         CoordinateY++;
                         askIsDead = false;
                     }
                     break;
-                case Direction.Up:
+                case Move.Up:
                     if (CoordinateY > 0)
                     {
                         CoordinateY--;
@@ -54,7 +55,7 @@ namespace Logic
             return !askIsDead;
         }
 
-         public bool Eat(int x, int y)
+        public bool Eat(int x, int y)
         {
             if(this.CoordinateX == x & this.CoordinateY == y)
             {

@@ -5,23 +5,16 @@ using Common;
 
 namespace Logic
 {
-    public enum Direction
-    {
-        Up = 1,
-        Down,
-        Right,
-        Left
-    }
     public class Game
     {    
         private Game() {}
         //private static Game _instance;
 
         public static void Start()
-        {  
-            
+        {
+
             //Data DataOut = new Data();            
-            Algorithm1 algo = new Algorithm1();
+            var algo = new TestAlgorithm();
             Field field = new Field();
             Food food = new Food();
             Snake snake = new Snake();
@@ -33,7 +26,7 @@ namespace Logic
 
             
 
-            for (Move direction = Move.Left; snake.TryStep((Direction)(int)direction, field.Size); direction = algo.GetMove())
+            for (Move direction = Move.Left; snake.TryStep(direction, field.Size); direction = algo.GetMove())
             {
                 field.DrawClean();
                 field.DrawFood(food.CordinateX, food.CordinateY, food.Symbol);
