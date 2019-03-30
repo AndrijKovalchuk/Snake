@@ -16,46 +16,26 @@ namespace Logic
             //Data DataOut = new Data();            
             var algo = new TestAlgorithm();
             Field field = new Field();
-            Food food = new Food();
-            Snake snake = new Snake();
+            //Food food = new Food();
+            Snake snake = new Snake(field.StartCordinateX, field.StartCordinateY);
 
-            //food.Generate(field.Size);
+            Food.New(field.Size);
 
-            snake.CoordinateX = field.StartCordinateX;
-            snake.CoordinateY = field.StartCordinateY;
-
-            
-
-            for (Move direction = Move.Left; snake.TryStep(direction, field.Size); direction = algo.GetMove())
+            for (Move direction = Move.Up; snake.TryStep(direction, field.Size); direction = algo.GetMove())
+            //while(true)
             {
-                field.DrawClean();
-                field.DrawFood(food.CordinateX, food.CordinateY, food.Symbol);
-                field.DrawSnake(snake.CoordinateX, snake.CoordinateY, snake.HeadSymbol);
-
                 Clear();
-                field.Print();
-
-                algo.SetGameField(field.Array);
+                snake.TryStep(Move.Up, field.Size);
+                field.Draw(snake.Body[snake.Head].X, snake.Body[snake.Head].Y, Food.Coordinate.X, Food.Coordinate.Y);
+                                
+                //algo.SetGameField(field.Array);
                 WriteLine(direction);
-                if(snake.Eat(food.CordinateX, food.CordinateY))
+                if(snake.Eat(Food.Coordinate.X, Food.Coordinate.Y))
                 {
-                    food.Generate(field.Size);
+                    Food.New(field.Size);
                 }
                 ReadKey();
             }
-        }
-
-        private string GetData(string input)
-        {
-            var type = new {direction = ""};
-            var Direction = JsonConvert.DeserializeAnonymousType(input, type);
-
-            Snake snake = new Snake();
-            //snake.DoStep(Direction.direction);
-
-
-            string a = "a";
-            return a;
         }
     }
 }

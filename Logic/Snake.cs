@@ -1,66 +1,107 @@
 using System;
+using static System.Console;
+using System.Collections.Generic;
 using Common;
 
 namespace Logic
 {
-    public partial class Snake
+    public class Snake
     {
-        public int Size { get; set; }
-        public int CoordinateX { get; set; }
-        public int CoordinateY { get; set; }
-        public char HeadSymbol { get; set; } = '1';
-        public char BodySymbol { get; set; }
-
+        public int Size { get; private set; }
+        public int Head { get; private set; }
+        private int TempX { get; set; }
+        private int TempY { get; set; }
+        public List<Point> Body = new List<Point>();
+        
+        public Snake(int x, int y)
+        {
+            Point point = new Point(x,y,StatePoint.snakeBody);
+            Body.Add(point);
+            Size = 1;
+            Head = 0;
+        }
+        
         public bool TryStep(Move direction, int size)
         {
-            var askIsDead = true;
+            bool NotDead = true;
 
             switch (direction)
             {
                 case Move.Left:
-                    if (CoordinateX > 0)
+                    if(Body[Head].X > 0)
                     {
-                        CoordinateX--;
-                        askIsDead = false;
+                        Point pointL = new Point(Body[Head].X, Body[Head].Y + 1,StatePoint.snakeBody);
+                        Body.Add(pointL);
+                        Body.RemoveAt(Head);
+                        Head = Body.Count - 1;
+                        NotDead = true;
                     }
+                    else
+                    {
+                        NotDead = false;
+                    }  
                     break;
+
                 case Move.Right:
-                    if (CoordinateX < size - 1)
+                    if(Body[Head].X < (size - 1))
                     {
-                        CoordinateX++;
-                        askIsDead = false;
-                    }
+                        Point pointR = new Point(Body[Head].X + 1, Body[Head].Y,StatePoint.snakeBody);
+                        Body.Add(pointR);
+                        Body.RemoveAt(Head);
+                        Head = Body.Count - 1;
+                        NotDead = true;
+                    }  
+                    else
+                    {
+                        NotDead = false;
+                    }                       
                     break;
+
                 case Move.Down:
-                    if (CoordinateY < size - 1)
+                    if(Body[Head].Y > 0)
                     {
-                        CoordinateY++;
-                        askIsDead = false;
+                        Point pointD = new Point(Body[Head].X, Body[Head].Y - 1,StatePoint.snakeBody);
+                        Body.Add(pointD);
+                        Body.RemoveAt(Head);
+                        Head = Body.Count - 1;
+                        NotDead = true;
                     }
+                    else
+                    {
+                        NotDead = false;
+                    }  
                     break;
+
                 case Move.Up:
-                    if (CoordinateY > 0)
+                    if (Body[Head].Y < (size - 1))
                     {
-                        CoordinateY--;
-                        askIsDead = false;
+                        Point pointU = new Point(Body[Head].X, Body[Head].Y + 1,StatePoint.snakeBody);
+                        Body.Add(pointU);
+                        Body.RemoveAt(Head);
+                        Head = Body.Count - 1;
+                        NotDead = true;             
                     }
+                    else
+                    {
+                        NotDead = false;
+                    }  
                     break;
             }
 
-            if (askIsDead)
+            if (!NotDead)
             {
                 IsDead();
             }
 
-            return !askIsDead;
+            return NotDead;
         }
-
+        
         public bool Eat(int x, int y)
         {
-            if(this.CoordinateX == x & this.CoordinateY == y)
+            if(Body[Head].X == x & Body[Head].Y == y)
             {
-                this.Size++;
-                Console.WriteLine(this.Size);
+                Size++;
+                WriteLine("Your size: " + Size);
                 return true;
             }
             return false;

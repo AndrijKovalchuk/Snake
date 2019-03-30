@@ -1,19 +1,18 @@
 using System;
+using Common;
 
 namespace Logic
 {
     public class Food 
     {
-        public int CordinateX { get; set; } = 1;
-        public int CordinateY { get; set; } = 5;
-        public char Symbol = 'X';
-
-        public void Generate(int FieldSize)
+        public static Point Coordinate;
+        private Food(){}
+        public static void New(int FieldSize)
         {
             Random random = new Random();
 
-            this.CordinateX = random.Next(FieldSize);
-            this.CordinateY = random.Next(FieldSize);
+            //Coordinate = new Point(random.Next(FieldSize),random.Next(FieldSize), StatePoint.food);
+            Coordinate = new Point(1,15, StatePoint.food);
         }
         
     }
