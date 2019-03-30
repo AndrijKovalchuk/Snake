@@ -21,7 +21,7 @@ namespace Logic
 
             Food.New(field.Size);
 
-            for (Move direction = Move.Up; snake.TryStep(direction, field.Size); direction = algo.GetMove())
+            for (Move direction = Move.Up; snake.TryStep(direction, field.Size); direction = algo.GetMove(snake.Body,Food.Coordinate))
             //while(true)
             {
                 Clear();

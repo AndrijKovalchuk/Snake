@@ -9,8 +9,6 @@ namespace Logic
     {
         public int Size { get; private set; }
         public int Head { get; private set; }
-        private int TempX { get; set; }
-        private int TempY { get; set; }
         public List<Point> Body = new List<Point>();
         
         public Snake(int x, int y)
