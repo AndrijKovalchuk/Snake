@@ -21,13 +21,12 @@ namespace Logic
 
             Food.New(field.Size);
 
-            for (Move direction = Move.Up; snake.TryStep(direction, field.Size); direction = algo.GetMove(snake.Body,Food.Coordinate))
-            //while(true)
+            for (Move direction = Move.None; snake.TryStep(direction, field.Size); direction = algo.GetMove(snake.Body,Food.Coordinate)) 
             {
                 Clear();
-                snake.TryStep(Move.Up, field.Size);
-                field.Draw(snake.Body[snake.Head].X, snake.Body[snake.Head].Y, Food.Coordinate.X, Food.Coordinate.Y);
-                                
+                snake.TryStep(direction, field.Size);  
+                field.Draw(snake.Body[snake.Body.Count - 1].X, snake.Body[snake.Body.Count - 1].Y, Food.Coordinate.X, Food.Coordinate.Y);
+                              
                 //algo.SetGameField(field.Array);
                 WriteLine(direction);
                 if(snake.Eat(Food.Coordinate.X, Food.Coordinate.Y))

@@ -8,7 +8,7 @@ namespace Logic
     public class Snake
     {
         public int Size { get; private set; }
-        public int Head { get; private set; }
+        //public int Head { get; private set; }
         public List<Point> Body = new List<Point>();
         
         public Snake(int x, int y)
@@ -16,7 +16,7 @@ namespace Logic
             Point point = new Point(x,y,StatePoint.snakeBody);
             Body.Add(point);
             Size = 1;
-            Head = 0;
+            //Head = 0;
         }
         
         public bool TryStep(Move direction, int size)
@@ -26,13 +26,13 @@ namespace Logic
             switch (direction)
             {
                 case Move.Left:
-                    if(Body[Head].X > 0)
+                    if(Body[Body.Count - 1].X > 0)
                     {
-                        Point pointL = new Point(Body[Head].X, Body[Head].Y + 1,StatePoint.snakeBody);
+                        Point pointL = new Point(Body[Body.Count - 1].X - 1, Body[Body.Count - 1].Y, StatePoint.snakeBody);
                         Body.Add(pointL);
-                        Body.RemoveAt(Head);
-                        Head = Body.Count - 1;
-                        NotDead = true;
+                        Body.RemoveAt(Body.Count - 2);
+                        //Head = Body.Count - 1;
+                        //NotDead = true;
                     }
                     else
                     {
@@ -41,13 +41,13 @@ namespace Logic
                     break;
 
                 case Move.Right:
-                    if(Body[Head].X < (size - 1))
+                    if(Body[Body.Count - 1].X < (size - 1))
                     {
-                        Point pointR = new Point(Body[Head].X + 1, Body[Head].Y,StatePoint.snakeBody);
+                        Point pointR = new Point(Body[Body.Count - 1].X + 1, Body[Body.Count - 1].Y, StatePoint.snakeBody);
                         Body.Add(pointR);
-                        Body.RemoveAt(Head);
-                        Head = Body.Count - 1;
-                        NotDead = true;
+                        Body.RemoveAt(Body.Count - 2);
+                        //Head = Body.Count - 1;
+                        //NotDead = true;
                     }  
                     else
                     {
@@ -56,13 +56,13 @@ namespace Logic
                     break;
 
                 case Move.Down:
-                    if(Body[Head].Y > 0)
+                    if(Body[Body.Count - 1].Y > 0)
                     {
-                        Point pointD = new Point(Body[Head].X, Body[Head].Y - 1,StatePoint.snakeBody);
+                        Point pointD = new Point(Body[Body.Count - 1].X, Body[Body.Count - 1].Y - 1, StatePoint.snakeBody);
                         Body.Add(pointD);
-                        Body.RemoveAt(Head);
-                        Head = Body.Count - 1;
-                        NotDead = true;
+                        Body.RemoveAt(Body.Count - 2);
+                        //Head = Body.Count - 1;
+                        //NotDead = true;
                     }
                     else
                     {
@@ -71,13 +71,13 @@ namespace Logic
                     break;
 
                 case Move.Up:
-                    if (Body[Head].Y < (size - 1))
+                    if (Body[Body.Count - 1].Y < (size - 1))
                     {
-                        Point pointU = new Point(Body[Head].X, Body[Head].Y + 1,StatePoint.snakeBody);
+                        Point pointU = new Point(Body[Body.Count - 1].X, Body[Body.Count - 1].Y + 1, StatePoint.snakeBody);
                         Body.Add(pointU);
-                        Body.RemoveAt(Head);
-                        Head = Body.Count - 1;
-                        NotDead = true;             
+                        Body.RemoveAt(Body.Count - 2);
+                        //Head = Body.Count - 1;
+                        //NotDead = true;             
                     }
                     else
                     {
@@ -96,7 +96,7 @@ namespace Logic
         
         public bool Eat(int x, int y)
         {
-            if(Body[Head].X == x & Body[Head].Y == y)
+            if(Body[Body.Count - 1].X == x & Body[Body.Count - 1].Y == y)
             {
                 Size++;
                 WriteLine("Your size: " + Size);

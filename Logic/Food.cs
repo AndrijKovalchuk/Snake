@@ -5,7 +5,7 @@ namespace Logic
 {
     public class Food 
     {
-        public static Point Coordinate;
+        public static Point Coordinate{ get; private set; }
         private Food(){}
         public static void New(int FieldSize)
         {

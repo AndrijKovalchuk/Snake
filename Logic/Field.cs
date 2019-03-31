@@ -24,7 +24,7 @@ namespace Logic
                    {
                        Write("S");
                    }
-                   if(j == FoodX & i == FoodY)
+                   else if(j == FoodX & i == FoodY)
                    {
                        Write("F");
                    }
