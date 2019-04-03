@@ -1,247 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Common;
+using static System.Math;
 
 namespace Algorithm
 {
     public class TestAlgorithm
     {
-        /*private string[,] GameField;
-        private Point SnakeHead = new Point();*/
+        private Point SnakeHead;
         private Point LocationFood;
+        private TestAlgorithm() { }
 
-        public void SetGameField(char[,] Field)
+        private static TestAlgorithm _testAlgorithmInstance = null;
+        public static TestAlgorithm GetInstance()
         {
-            /*GameField = new string[Field.GetLength(0), Field.GetLength(1)];
-
-            for(var i = 0; i < Field.GetLength(0); i++)
+            if (_testAlgorithmInstance == null)
             {
-                for(var j = 0; j < Field.GetLength(1); j++)
-                {
-                    GameField[i, j] = Field[i, j].ToString();
-
-                    if (GameField[i, j] == "1") SnakeHead = new Point(j, i);
-                    if (GameField[i, j] == "X") LocationFood = new Point(j, i);
-                }
-            }*/
+                _testAlgorithmInstance = new TestAlgorithm();
+            }
+            return _testAlgorithmInstance;
         }
 
-        public Move GetMove()
-        {/*
-            // if snake is missing
-            if (SnakeHead.Equals(new Point()))
-            {
-                return Move.None;
-            }
-
-            // if food is missing
-            if (LocationFood.Equals(new Point()))
-            {
-                if (MoveFromTheEdges() != Move.None)
-                {
-                    return MoveFromTheEdges();
-                }
-                else
-                {
-                    if (MoveAlongTheEdge() != Move.None)
-                    {
-                        return MoveAlongTheEdge();
-                    }
-                    else
-                    {
-                        return MoveToTheEdge();
-                    }
-                }
-            }
-            */
-            return Move.None;
-        }
-
-        /*
-        private Move MoveFromTheEdges()
+        public static Move GetMove(List<Point> SnakeBody, Point SnakeHead, Point Food)
         {
-            if ((SnakeHead.X == 0) && (SnakeHead.Y == 0))
-            {
-                return Move.Right;
-            }
+            var TestAlgorithm = GetInstance();
+            TestAlgorithm.SnakeHead = SnakeHead ?? throw new Exception("Snake head is missing!");
+            TestAlgorithm.LocationFood = Food ?? throw new Exception("Food is missing!");
 
-            if ((SnakeHead.X == GameField.GetLength(0) - 1) && (SnakeHead.Y == 0))
-            {
-                return Move.Down;
-            }
-
-            if ((SnakeHead.X == GameField.GetLength(0) - 1) && (SnakeHead.Y == GameField.GetLength(1) - 1))
-            {
-                return Move.Left;
-            }
-
-            if ((SnakeHead.X == 0) && (SnakeHead.Y == GameField.GetLength(1) - 1))
-            {
-                return Move.Up;
-            }
-
-            return Move.None;
-        }
-
-        private Move MoveAlongTheEdge()
-        {
-            if (SnakeHead.X == 0)
-            {
-                return Move.Up;
-            }
-
-            if (SnakeHead.X == GameField.GetLength(0) - 1)
-            {
-                return Move.Down;
-            }
-
-            if (SnakeHead.Y == 0)
-            {
-                return Move.Right;
-            }
-
-            if (SnakeHead.Y == GameField.GetLength(1) - 1)
-            {
-                return Move.Left;
-            }
-
-            return Move.None;
-        }
-
-        private Move MoveToTheEdge()
-        {
-            var DistanceTheRightEdge = GameField.GetLength(0) - 1 - SnakeHead.X;
-            var DistanceTheDownEdge = GameField.GetLength(1) - 1 - SnakeHead.Y;
-
-            if (SnakeHead.X > DistanceTheRightEdge)
-            {
-                if (SnakeHead.Y > DistanceTheDownEdge)
-                {
-                    if (DistanceTheRightEdge > DistanceTheDownEdge)
-                    {
-                        return Move.Down;
-                    }
-                    else
-                    {
-                        return Move.Right;
-                    }
-                }
-                else
-                {
-                    if (DistanceTheRightEdge > SnakeHead.Y)
-                    {
-                        return Move.Up;
-                    }
-                    else
-                    {
-                        return Move.Right;
-                    }
-                }                    
-            }
-            else
-            {
-                if (SnakeHead.Y > DistanceTheDownEdge)
-                {
-                    if (SnakeHead.X > DistanceTheDownEdge)
-                    {
-                        return Move.Down;
-                    }
-                    else
-                    {
-                        return Move.Left;
-                    }
-                }
-                else
-                {
-                    if (SnakeHead.X > SnakeHead.Y)
-                    {
-                        return Move.Up;
-                    }
-                    else
-                    {
-                        return Move.Left;
-                    }
-                }
-            }
+            return TestAlgorithm.MoveToThePoint();
         }
 
         private Move MoveToThePoint()
         {
-            if (SnakeHead.X == LocationFood.X)
+            if (Abs(SnakeHead.X - LocationFood.X) < Abs(SnakeHead.Y - LocationFood.Y))
             {
-                if (SnakeHead.Y > LocationFood.Y)
-                {
-                    return Move.Up;
-                }
-                else
-                {
-                    return Move.Down;
-                }
-            }
-
-            if (SnakeHead.Y == LocationFood.Y)
-            {
-                if (SnakeHead.X > LocationFood.X)
-                {
-                    return Move.Left;
-                }
-                else
-                {
-                    return Move.Right;
-                }
-            }
-
-            if (SnakeHead.X > LocationFood.X)
-            {
-                if (SnakeHead.Y > LocationFood.Y)
-                {
-                    if(SnakeHead.X - LocationFood.X > SnakeHead.Y - LocationFood.Y)
-                    {
-                        return Move.Up;
-                    }
-                    else
-                    {
-                        return Move.Left;
-                    }
-                }
-                else
-                {
-                    if (SnakeHead.X - LocationFood.X > LocationFood.Y - SnakeHead.Y)
-                    {
-                        return Move.Down;
-                    }
-                    else
-                    {
-                        return Move.Left;
-                    }
-                }
+                return MoveOX();
             }
             else
             {
-                if (SnakeHead.Y > LocationFood.Y)
-                {
-                    if (LocationFood.X - SnakeHead.X > SnakeHead.Y - LocationFood.Y)
-                    {
-                        return Move.Up;
-                    }
-                    else
-                    {
-                        return Move.Right;
-                    }
-                }
-                else
-                {
-                    if (LocationFood.X - SnakeHead.X > LocationFood.Y - SnakeHead.Y)
-                    {
-                        return Move.Down;
-                    }
-                    else
-                    {
-                        return Move.Right;
-                    }
-                }
+                return MoveOY();
             }
-        }*/
+        }
+
+        private Move MoveOX()
+        {
+            if (SnakeHead.X > LocationFood.X)
+            {
+                return Move.Left;
+            }
+            else
+            {
+                return Move.Right;
+            }
+        }
+
+        private Move MoveOY()
+        {
+            if (SnakeHead.Y > LocationFood.Y)
+            {
+                return Move.Up;
+            }
+            else
+            {
+                return Move.Down;
+            }
+        }        
     }
 }
