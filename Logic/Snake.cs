@@ -22,6 +22,7 @@ namespace Logic
         public bool TryStep(Move direction, int size)
         {
             bool NotDead = true;
+            WriteLine(Body[0].X);
 
             switch (direction)
             {
@@ -43,9 +44,11 @@ namespace Logic
                 case Move.Right:
                     if(Body[Body.Count - 1].X < (size - 1))
                     {
-                        Point pointR = new Point(Body[Body.Count - 1].X + 1, Body[Body.Count - 1].Y, StatePoint.snakeBody);
+                        WriteLine(Body[0].X);
+                        Point pointR = new Point(Body[0].X+1, Body[Body.Count-1].Y, StatePoint.snakeBody);
                         Body.Add(pointR);
                         Body.RemoveAt(0);
+                        WriteLine(Body[0].X);
                         Head = pointR;
                         NotDead = true;
                     }  

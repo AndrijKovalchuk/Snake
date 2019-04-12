@@ -24,10 +24,12 @@ namespace Logic
             for (Move direction = Move.None; snake.TryStep(direction, field.Size); direction = TestAlgorithm.GetMove(snake.Body, snake.Head, Food.Coordinate)) 
             {
                 Clear();
-                snake.TryStep(direction, field.Size);  
+                //snake.TryStep(direction, field.Size);  
                 field.Draw(snake.Body[snake.Body.Count - 1].X, snake.Body[snake.Body.Count - 1].Y, Food.Coordinate.X, Food.Coordinate.Y);
                               
                 //algo.SetGameField(field.Array);
+                WriteLine(snake.Head.X + " " + Food.Coordinate.X);
+                WriteLine(snake.Head.Y + " " + Food.Coordinate.Y);
                 WriteLine(direction);
                 if(snake.Eat(Food.Coordinate.X, Food.Coordinate.Y))
                 {
