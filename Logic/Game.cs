@@ -14,14 +14,14 @@ namespace Logic
         {
 
             //Data DataOut = new Data();            
-            var algo = new TestAlgorithm();
+            //var algo = new TestAlgorithm();
             Field field = new Field();
             //Food food = new Food();
             Snake snake = new Snake(field.StartCordinateX, field.StartCordinateY);
 
             Food.New(field.Size);
 
-            for (Move direction = Move.None; snake.TryStep(direction, field.Size); direction = algo.GetMove(snake.Body,Food.Coordinate)) 
+            for (Move direction = Move.None; snake.TryStep(direction, field.Size); direction = TestAlgorithm.GetMove(snake.Body, snake.Head, Food.Coordinate)) 
             {
                 Clear();
                 snake.TryStep(direction, field.Size);  
