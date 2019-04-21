@@ -11,8 +11,8 @@ namespace Logic
         {
             Random random = new Random();
 
-            //Coordinate = new Point(random.Next(FieldSize),random.Next(FieldSize), StatePoint.food);
-            Coordinate = new Point(1,15, StatePoint.food);
+            Coordinate = new Point(random.Next(FieldSize),random.Next(FieldSize), StatePoint.food);
+            //Coordinate = new Point(1,15, StatePoint.food);
         }
         
     }

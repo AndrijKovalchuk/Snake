@@ -32,7 +32,7 @@ namespace Algorithm
 
         private Move MoveToThePoint()
         {
-            if (Abs(SnakeHead.X - LocationFood.X) < Abs(SnakeHead.Y - LocationFood.Y))
+            if (Abs(SnakeHead.X - LocationFood.X) > Abs(SnakeHead.Y - LocationFood.Y))
             {
                 return MoveOX();
             }
@@ -58,11 +58,11 @@ namespace Algorithm
         {
             if (SnakeHead.Y > LocationFood.Y)
             {
-                return Move.Up;
+                return Move.Down;
             }
             else
             {
-                return Move.Down;
+                return Move.Up;
             }
         }        
     }

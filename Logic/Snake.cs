@@ -99,7 +99,7 @@ namespace Logic
         
         public bool Eat(int x, int y)
         {
-            if(Body[Body.Count - 1].X == x & Body[Body.Count - 1].Y == y)
+            if(Head.X == x & Head.Y == y)
             {
                 Size++;
                 WriteLine("Your size: " + Size);
