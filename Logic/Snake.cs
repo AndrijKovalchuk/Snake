@@ -102,7 +102,7 @@ namespace Logic
             if(Head.X == x & Head.Y == y)
             {
                 Size++;
-                WriteLine("Your size: " + Size);
+                //WriteLine("Your size: " + Size);
                 return true;
             }
             return false;

@@ -1,17 +1,17 @@
-﻿using System;
-using Logic;
-using Newtonsoft.Json;
-using static System.Console;
-
-namespace UI
+﻿namespace UI
 {
-    class Program
+    using System;
+    using Logic;
+    using Newtonsoft.Json;
+    using static System.Console;
+
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            WriteLine("I'm started"); 
+            WriteLine("I'm started");
             Game.Start();
-            
+
             Read();
         }
     }

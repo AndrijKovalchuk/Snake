@@ -8,7 +8,7 @@ namespace Logic
     public class Game
     {    
         private Game() {}
-        //private static Game _instance;
+        
         private static Game _instance;
 
         private static Game GetInstance()
@@ -41,6 +41,8 @@ namespace Logic
                 WriteLine("snake.Head.X = " + snake.Head.X + "\tFood.Coordinate.X =  " + Food.Coordinate.X);
                 WriteLine("snake.Head.Y = " + snake.Head.Y + "\tFood.Coordinate.Y " + Food.Coordinate.Y);
                 WriteLine("direction = " + direction);
+                WriteLine("BodyCount = " + snake.Body.Count);
+                WriteLine("Size = " + snake.Size);
                 if(snake.Eat(Food.Coordinate.X, Food.Coordinate.Y))
                 {
                     Food.New(field.Size);
