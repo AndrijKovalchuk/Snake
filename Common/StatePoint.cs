@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common
+﻿namespace Common
 {
     public enum StatePoint
     {
-        empty,
-        snakeBody,
-        snakeHead,
-        food
+        Empty,
+        SnakeBody,
+        SnakeHead,
+        Food,
     }
 }

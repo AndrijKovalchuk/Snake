@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common
+﻿namespace Common
 {
     public class Point
     {
@@ -24,6 +20,12 @@ namespace Common
             private set;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Point"/> class.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="state"></param>
         public Point(int x, int y, StatePoint state)
         {
             X = x;

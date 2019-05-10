@@ -13,10 +13,10 @@ namespace Logic
         
         public Snake(int x, int y)
         {
-            Point point = new Point(x,y,StatePoint.snakeBody);
+            Point point = new Point(x,y,StatePoint.SnakeBody);
             Body.Add(point);
             Size = 1;
-            Head = new Point(x, y, StatePoint.snakeHead);
+            Head = new Point(x, y, StatePoint.SnakeHead);
         }
         
         public bool TryStep(Move direction, int size)
@@ -29,7 +29,7 @@ namespace Logic
                 case Move.Left:
                     if(Body[Body.Count - 1].X > 0)
                     {
-                        Point pointL = new Point(Body[Body.Count - 1].X - 1, Body[Body.Count - 1].Y, StatePoint.snakeBody);
+                        Point pointL = new Point(Body[Body.Count - 1].X - 1, Body[Body.Count - 1].Y, StatePoint.SnakeBody);
                         Body.Add(pointL);
                         Body.RemoveAt(0);
                         Head = pointL;
@@ -45,7 +45,7 @@ namespace Logic
                     if(Body[Body.Count - 1].X < (size - 1))
                     {
                         WriteLine(Body[0].X);
-                        Point pointR = new Point(Body[0].X+1, Body[Body.Count-1].Y, StatePoint.snakeBody);
+                        Point pointR = new Point(Body[0].X+1, Body[Body.Count-1].Y, StatePoint.SnakeBody);
                         Body.Add(pointR);
                         Body.RemoveAt(0);
                         WriteLine(Body[0].X);
@@ -61,7 +61,7 @@ namespace Logic
                 case Move.Down:
                     if(Body[Body.Count - 1].Y > 0)
                     {
-                        Point pointD = new Point(Body[Body.Count - 1].X, Body[Body.Count - 1].Y - 1, StatePoint.snakeBody);
+                        Point pointD = new Point(Body[Body.Count - 1].X, Body[Body.Count - 1].Y - 1, StatePoint.SnakeBody);
                         Body.Add(pointD);
                         Body.RemoveAt(0);
                         Head = pointD;
@@ -76,7 +76,7 @@ namespace Logic
                 case Move.Up:
                     if (Body[Body.Count - 1].Y < (size - 1))
                     {
-                        Point pointU = new Point(Body[Body.Count - 1].X, Body[Body.Count - 1].Y + 1, StatePoint.snakeBody);
+                        Point pointU = new Point(Body[Body.Count - 1].X, Body[Body.Count - 1].Y + 1, StatePoint.SnakeBody);
                         Body.Add(pointU);
                         Body.RemoveAt(0);
                         Head = pointU;
