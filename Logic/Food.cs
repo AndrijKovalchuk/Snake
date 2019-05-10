@@ -1,19 +1,19 @@
-using System;
-using Common;
-
 namespace Logic
 {
-    public class Food 
+    using System;
+    using Common;
+
+    public class Food
     {
-        public static Point Coordinate{ get; private set; }
-        private Food(){}
-        public static void New(int FieldSize)
+        public static Point Coordinate { get; private set; }
+
+        private Food() { }
+
+        public static void New(int fieldSize)
         {
             Random random = new Random();
 
-            Coordinate = new Point(random.Next(FieldSize),random.Next(FieldSize), StatePoint.Food);
-            //Coordinate = new Point(1,15, StatePoint.food);
+            Coordinate = new Point(random.Next(fieldSize), random.Next(fieldSize), StatePoint.Food);
         }
-        
     }
 }
