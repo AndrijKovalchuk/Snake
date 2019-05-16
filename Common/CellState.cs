@@ -1,6 +1,6 @@
 ﻿namespace Common
 {
-    public enum StatePoint
+    public enum CellState
     {
         Empty,
         SnakeBody,

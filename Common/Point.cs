@@ -1,6 +1,8 @@
 ﻿namespace Common
 {
-    public class Point
+    using System;
+
+    public class Point : IEquatable<Point>
     {
         public int X
         {
@@ -14,23 +16,36 @@
             private set;
         }
 
-        public StatePoint State
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Point"/> class.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="state"></param>
-        public Point(int x, int y, StatePoint state)
+        public Point(int x, int y)
         {
             X = x;
             Y = y;
-            State = state;
+        }
+
+        public static Point Random(Point maxValue)
+        {
+            var random = new Random();
+            return new Point(random.Next(maxValue.X), random.Next(maxValue.Y));
+        }
+
+        public bool Equals(Point other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return X == other.X && Y == other.Y;
+        }
+
+        public static Point operator +(Point left, Point right)
+        {
+            return new Point(left.X + right.X, left.Y + right.Y);
+        }
+
+        public static Point operator -(Point left, Point right)
+        {
+            return new Point(left.X - right.X, left.Y - right.Y);
         }
     }
 }
