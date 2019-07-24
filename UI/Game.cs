@@ -20,6 +20,7 @@ namespace Logic
                 Clear();
                 ShowGameField();
                 gameField.MakeMove(direction);
+                Write(gameField.Log);
                 ReadKey();
             }
         }

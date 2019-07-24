@@ -38,6 +38,16 @@
             return X == other.X && Y == other.Y;
         }
 
+        public bool Equals(int x, int y)
+        {
+            if ((x < 0) || (y < 0))
+            {
+                return false;
+            }
+
+            return X == x && Y == y;
+        }
+
         public static Point operator +(Point left, Point right)
         {
             return new Point(left.X + right.X, left.Y + right.Y);

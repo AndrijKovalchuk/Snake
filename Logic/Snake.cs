@@ -28,23 +28,42 @@ namespace Logic
 
         public Snake(Point initialPosition, Move initialDirection)
         {
-            Body = new List<Point>();
-            Body.Add(initialPosition);
+            Body = new List<Point>
+            {
+                initialPosition,
+            };
             Direction = initialDirection;
         }
 
-        public void Add(Point partBody, bool eat = false)
+        public void SetMove(Move direction)
         {
-            Body.Add(partBody);
-            if (!eat)
+            currentMove = direction;
+            currentPoint = Head + MovePoint.GetPoint(currentMove);
+        }
+
+        public bool IsReverseMovement()
+        {
+            return (-1 * (int)Direction) == (int)currentMove;
+        }
+
+        public bool IsCrashed()
+        {
+            return Body.IndexOf(currentPoint) > 0;
+        }
+
+        public bool MoveIsEat(Point food)
+        {
+            Body.Add(currentPoint);
+
+            if (!food.Equals(currentPoint))
             {
                 Body.RemoveAt(0);
             }
-        }
 
-        public bool IsPresent(Point position)
-        {
-            return Body.IndexOf(position) > 0;
+            Direction = currentMove;
+            currentMove = Move.None;
+
+            return food.Equals(currentPoint);
         }
 
         public IEnumerator<Cell> GetEnumerator()
@@ -52,9 +71,10 @@ namespace Logic
             return GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        private Move currentMove;
+
+        private Point currentPoint;
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

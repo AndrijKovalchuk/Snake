@@ -1,6 +1,5 @@
 namespace Logic
 {
-    using System;
     using Common;
 
     public class GameField
@@ -13,6 +12,8 @@ namespace Logic
 
         public Snake Kite { get; private set; }
 
+        public string Log = string.Empty;
+
         public GameField()
         {
             Food = Point.Random(Size);
@@ -23,23 +24,21 @@ namespace Logic
         {
             if (Status == GameStatus.Play)
             {
-                var movePoint = Kite.Head + MovePoint.GetPoint(direction);
+                Kite.SetMove(direction);
 
-                if (Kite.Head - MovePoint.GetPoint(Kite.Direction) == movePoint)
-                {
-                    throw new Exception("Reverse movement is not allowed!");
-                }
-
-                if (Kite.IsPresent(movePoint))
+                if (Kite.IsReverseMovement())
                 {
                     Status = GameStatus.GameOver;
+                    Log += "Move " + direction + " is reverse\n";
                 }
 
-                var eatFood = movePoint.Equals(Food);
+                if (Kite.IsCrashed())
+                {
+                    Status = GameStatus.GameOver;
+                    Log += "Move " + direction + " is crashed\n";
+                }
 
-                Kite.Add(movePoint, eatFood);
-
-                if (eatFood)
+                if (Kite.MoveIsEat(Food))
                 {
                     Food = Point.Random(Size);
                 }
