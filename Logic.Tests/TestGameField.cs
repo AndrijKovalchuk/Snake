@@ -18,10 +18,6 @@ namespace Tests
 
             gameField.MakeMove(Move.Left);
             Assert.That(gameField.Status, Is.EqualTo(GameStatus.Play));
-
-            //Turn left again, snake have to dead
-            gameField.MakeMove(Move.Left);
-            Assert.That(gameField.Status, Is.EqualTo(GameStatus.GameOver));
             
             //Clear gameField
             gameField = null;
