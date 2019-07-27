@@ -65,13 +65,12 @@ namespace Tests
                 snake.MoveIsEat(new Point(1, i));
             }
 
-            //Turn 4th times, on 4th time doesn't have to dead
+            //Turn 3th times, on 3rd time doesn't have to dead
             snake.SetMove(Move.Right);
             snake.MoveIsEat(new Point(1, 100));
             snake.SetMove(Move.Down);
             snake.MoveIsEat(new Point(1, 100));
-            snake.SetMove(Move.Left);
-            snake.MoveIsEat(new Point(1, 100));           
+            snake.SetMove(Move.Left);           
             
             TestContext.Out.WriteLine("Snake's coordinates:");
             TestContext.Out.WriteLine(snake.Body[0].X + " " + snake.Body[0].Y);
