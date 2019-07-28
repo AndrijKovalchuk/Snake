@@ -1,7 +1,7 @@
 namespace Logic
 {
-    using System.IO;
-    using System.Reflection;
+    //using System.IO;
+    //using System.Reflection;
     using Common;
     using log4net;
     using log4net.Config;
@@ -18,7 +18,7 @@ namespace Logic
 
         public string Log = string.Empty;
 
-        private static readonly ILog logger = LogManager.GetLogger(typeof(GameField));
+        //private static readonly ILog logger = LogManager.GetLogger(typeof(GameField));
 
         public GameField()
         {
@@ -28,9 +28,9 @@ namespace Logic
 
         public void MakeMove(Move direction)
         {
-            XmlConfigurator.Configure(LogManager.GetRepository(Assembly.GetEntryAssembly()), new FileInfo("Logic.config"));
+            //XmlConfigurator.Configure(LogManager.GetRepository(Assembly.GetEntryAssembly()), new FileInfo("Logic.config"));
 
-            logger.Info("Directrion: " + direction + "Status: " + Status);
+            //logger.Info("Directrion: " + direction + "Status: " + Status);
 
             if (Status == GameStatus.Play)
             {
@@ -40,22 +40,23 @@ namespace Logic
                 {
                     Status = GameStatus.GameOver;
                     Log += "Move " + direction + " is reverse\n";
-                    logger.Info("Move" + direction + "is reversed");
-                    logger.Info("Status: " + Status);
+                    //logger.Info("Move" + direction + "is reversed");
+                    //logger.Info("Status: " + Status);
+                    Logger.Info("test message");
                 }
 
                 if (Kite.IsCrashed())
                 {
                     Status = GameStatus.GameOver;
                     Log += "Move " + direction + " is crashed\n";
-                    logger.Info("Move: " + direction + ". Snake has crashed");
-                    logger.Info("Status: " + Status);
+                    //logger.Info("Move: " + direction + ". Snake has crashed");
+                    //logger.Info("Status: " + Status);
                 }
 
-                logger.Info("Snake is doing step or eating");
+                //logger.Info("Snake is doing step or eating");
                 if (Kite.MoveIsEat(Food))
                 {
-                    logger.Info("Snake has eaten");
+                    //logger.Info("Snake has eaten");
                     Food = Point.Random(Size);
                 }
             }
