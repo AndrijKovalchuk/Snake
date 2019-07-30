@@ -40,7 +40,7 @@
             testAlgorithm.Body = snakeBody;
 
             return testAlgorithm.MoveToThePoint();
-        } 
+        }
 
         private Move MoveToThePoint()
         {
@@ -56,11 +56,11 @@
 
         private Move MoveOX()
         {
-            if (snakeHead.X > locationFood.X)
-            {
-                nextStep = snakeHead + MovePoint.GetPoint(Move.Left);
+            nextStep = snakeHead + MovePoint.GetPoint(Move.Left);
 
-                if(lastMove != Move.Right && !Crashed())
+            if (snakeHead.X > locationFood.X & !Crashed())
+            {
+                if (lastMove != Move.Right && !Crashed())
                 {
                     lastMove = Move.Left;
                     return Move.Left;
@@ -70,21 +70,22 @@
             {
                 nextStep = snakeHead + MovePoint.GetPoint(Move.Right);
 
-                if(lastMove != Move.Left && !Crashed())
+                if (lastMove != Move.Left && !Crashed())
                 {
                     lastMove = Move.Right;
                     return Move.Right;
                 }
             }
+
             return MoveOY();
         }
 
         private Move MoveOY()
         {
-            if (snakeHead.Y > locationFood.Y)
-            {
-                nextStep = snakeHead + MovePoint.GetPoint(Move.Down);
+            nextStep = snakeHead + MovePoint.GetPoint(Move.Down);
 
+            if (snakeHead.Y > locationFood.Y & !Crashed())
+            {
                 if (lastMove != Move.Up && !Crashed())
                 {
                     lastMove = Move.Down;
@@ -95,12 +96,13 @@
             {
                 nextStep = snakeHead + MovePoint.GetPoint(Move.Up);
 
-                if(lastMove != Move.Down && !Crashed())
+                if (lastMove != Move.Down && !Crashed())
                 {
                     lastMove = Move.Up;
                     return Move.Up;
                 }
             }
+
             return MoveOX();
         }
 
