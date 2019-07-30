@@ -1,7 +1,7 @@
 namespace Logic
 {
-    //using System.IO;
-    //using System.Reflection;
+    // using System.IO;
+    // using System.Reflection;
     using Common;
     using log4net;
     using log4net.Config;
@@ -18,8 +18,7 @@ namespace Logic
 
         public string Log = string.Empty;
 
-        //private static readonly ILog logger = LogManager.GetLogger(typeof(GameField));
-
+        // private static readonly ILog logger = LogManager.GetLogger(typeof(GameField));
         public GameField()
         {
             Food = Point.Random(Size);
@@ -28,10 +27,9 @@ namespace Logic
 
         public void MakeMove(Move direction)
         {
-            //XmlConfigurator.Configure(LogManager.GetRepository(Assembly.GetEntryAssembly()), new FileInfo("Logic.config"));
+            // XmlConfigurator.Configure(LogManager.GetRepository(Assembly.GetEntryAssembly()), new FileInfo("Logic.config"));
 
-            //logger.Info("Directrion: " + direction + "Status: " + Status);
-
+            // logger.Info("Directrion: " + direction + "Status: " + Status);
             if (Status == GameStatus.Play)
             {
                 Kite.SetMove(direction);
@@ -40,8 +38,9 @@ namespace Logic
                 {
                     Status = GameStatus.GameOver;
                     Log += "Move " + direction + " is reverse\n";
-                    //logger.Info("Move" + direction + "is reversed");
-                    //logger.Info("Status: " + Status);
+
+                    // logger.Info("Move" + direction + "is reversed");
+                    // ogger.Info("Status: " + Status);
                     Logger.Info("test message");
                 }
 
@@ -49,14 +48,19 @@ namespace Logic
                 {
                     Status = GameStatus.GameOver;
                     Log += "Move " + direction + " is crashed\n";
-                    //logger.Info("Move: " + direction + ". Snake has crashed");
-                    //logger.Info("Status: " + Status);
+                    // logger.Info("Move: " + direction + ". Snake has crashed");
+                    // logger.Info("Status: " + Status);
                 }
 
-                //logger.Info("Snake is doing step or eating");
+                if(OutOfRange(direction))
+                {
+                    Status = GameStatus.GameOver;
+                    Log += "You have went beyond";
+                }
+                // logger.Info("Snake is doing step or eating");
                 if (Kite.MoveIsEat(Food))
                 {
-                    //logger.Info("Snake has eaten");
+                    // logger.Info("Snake has eaten");
                     Food = Point.Random(Size);
                 }
             }
@@ -84,6 +88,24 @@ namespace Logic
                 }
 
                 return CellState.Empty;
+            }
+        }
+
+        public bool OutOfRange(Move direction)
+        {
+            var currentMove = Kite.Head + MovePoint.GetPoint(direction);
+            switch (direction)
+            {
+                case Move.Down:
+                    return currentMove.Y < 0;
+                case Move.Left:
+                    return currentMove.X < 0;
+                case Move.Right:
+                    return currentMove.X >= Size.X;
+                case Move.Up:
+                    return currentMove.Y >= Size.Y;
+                default:
+                    return false;
             }
         }
     }
