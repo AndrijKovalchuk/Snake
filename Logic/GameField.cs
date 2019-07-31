@@ -70,21 +70,19 @@ namespace Logic
         {
             get
             {
-                var enterPoint = new Point(x, y);
+                if (Food.Equals(x, y))
+                {
+                    return CellState.Food;
+                }
 
-                if (Kite.Head.Equals(enterPoint))
+                if (Kite.Head.Equals(x, y))
                 {
                     return CellState.SnakeHead;
                 }
 
-                if (Kite.Body.IndexOf(enterPoint) != -1)
+                if (Kite.Body.Exists(item => item.X == x && item.Y == y))
                 {
                     return CellState.SnakeBody;
-                }
-
-                if (Food.Equals(enterPoint))
-                {
-                    return CellState.Food;
                 }
 
                 return CellState.Empty;
