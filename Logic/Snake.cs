@@ -73,7 +73,7 @@ namespace Logic
 
         private Move currentMove;
 
-        private Point currentPoint;
+        public Point currentPoint { get; private set; }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
