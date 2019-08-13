@@ -8,7 +8,8 @@
   </ItemGroup>
 
   <ItemGroup>    
-    <ProjectReference Include="..\Logic\Logic.csproj" />
+    <ProjectReference Include="..\Logic\Logic.csproj" />    
+    <ProjectReference Include="..\Snake.Db\Db.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

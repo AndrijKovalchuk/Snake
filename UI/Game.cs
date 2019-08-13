@@ -3,6 +3,7 @@ namespace Logic
     using System;
     using Algorithm;
     using Common;
+    using Db;
     using static System.Console;
 
     public class Game
@@ -21,8 +22,10 @@ namespace Logic
                 ShowGameField();
                 gameField.MakeMove(direction);
                 Write(gameField.Log);
-                ReadKey();
+                System.Threading.Thread.Sleep(250);
             }
+
+            this.SaveScores();
         }
 
         public void ShowGameField()
@@ -80,6 +83,20 @@ namespace Logic
             }
 
             ResetColor();
+        }
+
+        private void SaveScores()
+        {
+            SqLiteContext context = new SqLiteContext();
+            Score score = new Score();
+
+            Write("\nPlease enter your name: ");     
+
+            score.Name = ReadLine();
+            score.Points = gameField.Kite.Count - 1;
+
+            context.Scores.Add(score);
+            context.SaveChanges();
         }
     }
 }
